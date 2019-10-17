@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import Todos from './components/Todos';
+
 import './App.css';
 
+
 function App() {
+ const myList = [
+   {
+     id: 1,
+     title: "Feed the dog",
+     completed: false
+   },
+   {
+    id: 2,
+    title: "Make dinner",
+    completed: false
+  },
+  {
+    id: 3,
+    title: "Meet with Boss",
+    completed: false
+  }
+ ];
+ const [todos, setTodos] = useState(myList);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello from the app.js</h1>
+      <Todos/>
     </div>
   );
 }
