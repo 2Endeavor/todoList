@@ -1,35 +1,79 @@
 import React, {useState} from 'react';
-import Todos from './components/Todos';
+import'./App.css'
 
-import './App.css';
+function Todo({todo, index}) {
+  return(
+    <div className="todo">
+      {todo.text}
+    </div>
+  )
+}
 
+function TodoForm({addTodo}){
+  const [value, setValue] = useState("")
 
-function App() {
- const myList = [
+  const handleSubmit = e =>{
+    e.preventDefault();
+    if(!value) return;
+    addTodo(value);
+    setValue('');
+
+  }
+  return(
+    <form onSubmit ={handleSubmit}>
+      <input 
+      type="text" 
+      className="input" 
+      value={value} 
+      placeholder="Add Todo here"
+      onChange={e=>setValue(e.target.value)}/>
+    </form>
+  )
+}
+
+function App(){
+ const [todos, setTodos] = useState ([
    {
      id: 1,
-     title: "Feed the dog",
-     completed: false
+     text: "mow the lawn",
+     isComplete: false
+
    },
    {
     id: 2,
-    title: "Make dinner",
-    completed: false
+    text: "make dinner",
+    isComplete: false
+
   },
   {
     id: 3,
-    title: "Meet with Boss",
-    completed: false
+    text: "Build really cool todo app",
+    isComplete: false
+
   }
- ];
- const [todos, setTodos] = useState(myList);
+ ]);
+
+ const addTodo = text =>{
+   const newTodos = [...todos, {text}];
+   setTodos(newTodos);
+ }
+ return (
+   <div className="app">
+
+     <div className="todo-list">
+
+  {todos.map((todo, index)=>(
   
-  return (
-    <div className="App">
-      <h1>Hello from the app.js</h1>
-      <Todos/>
+    <Todo key={index} index={index} todo={todo}/>
+  ))}
+  <TodoForm addTodo={addTodo}/>
+      </div>
     </div>
-  );
+
+
+    
+ )
+
 }
 
 export default App;
