@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import'./App.css'
+import'./App.css';
+import TodoForm from './components/TodoForm'
 
 function Todo({todo, index,completeTodo,removeTodo}) {
   return(
@@ -16,27 +17,27 @@ function Todo({todo, index,completeTodo,removeTodo}) {
   )
 }
 
-function TodoForm({addTodo}){
-  const [value, setValue] = useState("")
+// function TodoForm({addTodo}){
+//   const [value, setValue] = useState("")
 
-  const handleSubmit = e =>{
-    e.preventDefault();
-    if(!value) return;
-    addTodo(value);
-    setValue('');
+//   const handleSubmit = e =>{
+//     e.preventDefault();
+//     if(!value) return;
+//     addTodo(value);
+//     setValue('');
 
-  }
-  return(
-    <form onSubmit ={handleSubmit}>
-      <input 
-      type="text" 
-      className="input" 
-      value={value} 
-      placeholder="Add Todo here"
-      onChange={e=>setValue(e.target.value)}/>
-    </form>
-  )
-}
+//   }
+//   return(
+//     <form onSubmit ={handleSubmit}>
+//       <input 
+//       type="text" 
+//       className="input" 
+//       value={value} 
+//       placeholder="Add Todo here"
+//       onChange={e=>setValue(e.target.value)}/>
+//     </form>
+//   )
+// }
 
 function App(){
  const [todos, setTodos] = useState ([
@@ -86,7 +87,7 @@ function App(){
     index={index} 
     todo={todo} 
     completeTodo={completeTodo}
-    removeTodo={removeTodo}
+    removeTodo
     />
   ))}
   <TodoForm addTodo={addTodo}/>
